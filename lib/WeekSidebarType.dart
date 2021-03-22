@@ -1,0 +1,1 @@
+enum WeekSidebarType { Current, Next }
