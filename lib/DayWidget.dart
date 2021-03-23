@@ -21,7 +21,7 @@ class _DayWidgetState extends State<DayWidget> {
               padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
               child: Align(
                 alignment: Alignment.centerLeft,
-                child: Text('Day name',
+                child: Text('Day name -',
                     style: Theme.of(context).textTheme.headline5),
               ),
             ),
