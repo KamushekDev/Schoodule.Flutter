@@ -22,7 +22,7 @@ class _DayWidgetState extends State<DayWidget> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child:
-                    Text('Day', style: Theme.of(context).textTheme.headline5),
+                    Text('Day2', style: Theme.of(context).textTheme.headline5),
               ),
             ),
             Divider(
