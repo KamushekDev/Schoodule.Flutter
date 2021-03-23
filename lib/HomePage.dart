@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:schoodule_flutter/WeekSidebarType.dart';
-import 'package:schoodule_flutter/WeekSidebarWidget.dart';
 
 import 'DayWidget.dart';
+import 'WeekSidebarType.dart';
+import 'WeekSidebarWidget.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  HomePage({Key key}) : super(key: key);
 
   @override
   _HomePageState createState() => _HomePageState();

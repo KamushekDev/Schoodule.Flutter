@@ -12,33 +12,34 @@ class _DayWidgetState extends State<DayWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-      child: FractionallySizedBox(
-        widthFactor: 0.95,
-        child: Card(
-          elevation: 10,
-          child: Column(
-            children: <Widget>[
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child:
-                      Text('Day', style: Theme.of(context).textTheme.headline5),
-                ),
+      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 3),
+      child: Card(
+        elevation: 3,
+        child: Column(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child:
+                    Text('Day', style: Theme.of(context).textTheme.headline5),
               ),
-              Divider(),
-              Column(
-                children: [
-                  LessonWidget(),
-                  LessonWidget(),
-                  LessonWidget(),
-                  LessonWidget(),
-                  LessonWidget(),
-                ],
-              )
-            ],
-          ),
+            ),
+            Divider(
+              indent: 10,
+              endIndent: 10,
+              thickness: 2,
+            ),
+            Column(
+              children: [
+                LessonWidget(),
+                LessonWidget(),
+                LessonWidget(),
+                LessonWidget(),
+                LessonWidget(),
+              ],
+            )
+          ],
         ),
       ),
     );

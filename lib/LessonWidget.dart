@@ -13,46 +13,54 @@ class _LessonWidgetState extends State<LessonWidget> {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(
             width: 3,
             height: 50,
             child: DecoratedBox(
-              decoration: BoxDecoration(color: Colors.blue),
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(90),
+                    bottom: Radius.circular(90),
+                  )),
             ),
           ),
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 7,
-            child: Column(
-              children: [
-                Text('11:35'),
-                Text('13:00'),
-              ],
+          SizedBox(
+            width: 46,
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Column(
+                children: [
+                  Text('55:55'),
+                  Text('13:00'),
+                ],
+              ),
             ),
           ),
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 73,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Практика',
-                  style: Theme.of(context).textTheme.caption,
-                ),
-                Text(
-                  'Технологии разработки сложного ПО',
-                  style: Theme.of(context).textTheme.bodyText1,
-                ),
-              ],
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(3),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Практика',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  Text(
+                    'Технологии разработки сложного ПО',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                ],
+              ),
             ),
           ),
-          Flexible(
-            fit: FlexFit.tight,
-            flex: 20,
+          Padding(
+            padding: const EdgeInsets.all(3),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
