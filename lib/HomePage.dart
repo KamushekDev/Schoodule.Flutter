@@ -5,7 +5,7 @@ import 'WeekSidebarType.dart';
 import 'WeekSidebarWidget.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key}) : super(key: key);
+  HomePage({Key key}) : super(key: key); //s
 
   @override
   _HomePageState createState() => _HomePageState();
