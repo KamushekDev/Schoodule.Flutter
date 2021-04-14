@@ -18,7 +18,7 @@ jobs:
       - name: Generate client
         uses: Amadevus/pwsh-script@v2
         with:
-          script: './GenerateClient.ps1 ${{ secrets.API_BASE_URL }}'
+          script: './GenerateClient.ps1 -apiHost=${{ secrets.API_BASE_URL }}'
 
       - run: flutter pub get
 
