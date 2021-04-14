@@ -1,7 +1,7 @@
 param([string]$apiHost = 'https://localhost:5001')
 
-$outputDir = '.\apiClient'
 $location = Split-Path $MyInvocation.MyCommand.Path;
+$outputDir = $location + '\apiClient'
 Set-Location $location
 
 
