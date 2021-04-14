@@ -1,7 +1,9 @@
 param([string]$apiHost = 'https://localhost:5001')
 
 $outputDir = '.\apiClient'
-$location = (Get-Location);
+$location = Split-Path $MyInvocation.MyCommand.Path;
+Set-Location $location
+
 
 # Удаляем старые файлы если папка существует
 if (Test-Path $outputDir)
@@ -18,7 +20,7 @@ ForEach ($swagger in Get-ChildItem ./swagger/*.json)
     $libName = 'api';
     Write-Host 'Generating for ' $generatedDir
     java -jar openapi-generator-cli-5.1.0.jar generate `
-        -i ('.\swagger\' + ($swagger.Name)) `
+        -i ('swagger\' + ($swagger.Name)) `
         -g dart-dio `
         -o $generatedDir `
         --additional-properties=pubName=$pubName `
@@ -43,5 +45,5 @@ ForEach ($swagger in Get-ChildItem ./swagger/*.json)
     flutter packages pub run build_runner build --delete-conflicting-outputs
 }
 
-Set-Location $location;
+Set-Location $location
 flutter pub get
