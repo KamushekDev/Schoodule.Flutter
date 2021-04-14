@@ -23,7 +23,7 @@ ForEach ($swagger in Get-ChildItem ./swagger/*.json)
     Set-Location $generatedDir
     Write-Host 'Flutter packages thing...'
     flutter pub get
-    flutter pub upgrade --major-versions
+    flutter pub upgrade --major-versions built_value built_collection built_value_generator build_runner
     Write-Host 'Codegen build runner...'
     flutter packages pub run build_runner build --delete-conflicting-outputs
 }
