@@ -13,10 +13,25 @@ if (Test-Path $outputDir)
 ForEach ($swagger in Get-ChildItem ./swagger/*.json)
 {
     $generatedDir = $outputDir + '\' + $swagger.BaseName;
-    $packageName = 'apiClient_' + ($swagger.BaseName -replace '\.', '_');
-    $packageVersion = ($swagger.BaseName -replace 'v', '') + '.0';
+    $pubName = 'apiClient_' + ($swagger.BaseName -replace '\.', '_');
+    $pubVersion = ($swagger.BaseName -replace 'v', '') + '.0';
+    $libName = 'api';
     Write-Host 'Generating for ' $generatedDir
-    java -jar openapi-generator-cli-5.1.0.jar generate -i ('swagger\' + ($swagger.Name)) -g dart-dio -o $generatedDir --additional-properties=pubName=$packageName --additional-properties=pubVersion=$packageVersion
+    java -jar openapi-generator-cli-5.1.0.jar generate `
+        -i ('swagger\' + ($swagger.Name)) `
+        -g dart-dio `
+        -o $generatedDir `
+        --additional-properties=pubName=$pubName `
+        --additional-properties=pubVersion=$pubVersion `
+        --additional-properties=pubLibrary=$libName `
+
+    # Удаляем test папку со всеми тестами
+    $testDir = $generatedDir + '\test';
+    if (Test-Path $testDir)
+    {
+        Remove-Item -LiteralPath $testDir -Force -Recurse
+    }
+
     $apiFile = $generatedDir + '\lib\api.dart';
     Write-Host 'Changing host to '  $apiHost
     ((Get-Content $apiFile) -replace 'http://localhost', $apiHost) | Set-Content $apiFile
