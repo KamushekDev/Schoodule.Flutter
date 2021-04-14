@@ -18,7 +18,7 @@ ForEach ($swagger in Get-ChildItem ./swagger/*.json)
     $libName = 'api';
     Write-Host 'Generating for ' $generatedDir
     java -jar openapi-generator-cli-5.1.0.jar generate `
-        -i ('swagger\' + ($swagger.Name)) `
+        -i ('.\swagger\' + ($swagger.Name)) `
         -g dart-dio `
         -o $generatedDir `
         --additional-properties=pubName=$pubName `
