@@ -19,13 +19,15 @@ ForEach ($swagger in Get-ChildItem ./swagger/*.json)
     $pubVersion = ($swagger.BaseName -replace 'v', '') + '.0';
     $libName = 'api';
     Write-Host 'Generating for ' $generatedDir
-    java -jar openapi-generator-cli-5.1.0.jar generate `
+    $gen = (java -jar openapi-generator-cli-5.1.0.jar generate `
         -i $swagger `
         -g dart-dio `
         -o $generatedDir `
         --additional-properties=pubName=$pubName `
         --additional-properties=pubVersion=$pubVersion `
-        --additional-properties=pubLibrary=$libName `
+        --additional-properties=pubLibrary=$libName)
+
+    Write-Host $gen
 
     # Удаляем test папку со всеми тестами
     $testDir = $generatedDir + '\test';
