@@ -1,7 +1,7 @@
 param([string]$apiHost = 'https://localhost:5001')
 
+$outputDir = './apiClient'
 $location = Split-Path $MyInvocation.MyCommand.Path;
-$outputDir = $location + '\apiClient'
 Set-Location $location
 
 
@@ -14,7 +14,7 @@ if (Test-Path $outputDir)
 # Генерируем по клиенту, на каждую версию API
 ForEach ($swagger in Get-ChildItem ./swagger/*.json)
 {
-    $generatedDir = $outputDir + '\' + $swagger.BaseName;
+    $generatedDir = $outputDir + '/' + $swagger.BaseName;
     $pubName = 'apiClient_' + ($swagger.BaseName -replace '\.', '_');
     $pubVersion = ($swagger.BaseName -replace 'v', '') + '.0';
     $libName = 'api';
@@ -30,13 +30,13 @@ ForEach ($swagger in Get-ChildItem ./swagger/*.json)
     Write-Host $gen
 
     # Удаляем test папку со всеми тестами
-    $testDir = $generatedDir + '\test';
+    $testDir = $generatedDir + '/test';
     if (Test-Path $testDir)
     {
         Remove-Item -LiteralPath $testDir -Force -Recurse
     }
 
-    $apiFile = $generatedDir + '\lib\api.dart';
+    $apiFile = $generatedDir + '/lib/api.dart';
     Write-Host 'Changing host to '  $apiHost
     ((Get-Content $apiFile) -replace 'http://localhost', $apiHost) | Set-Content $apiFile
     Set-Location $generatedDir
