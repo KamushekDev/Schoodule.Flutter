@@ -1223,6 +1223,238 @@
         }
       }
     },
+    "/api/schoolAdmin/literature": {
+      "post": {
+        "tags": [
+          "Literature"
+        ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "header",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "0.1"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schoodule.Business.Features.Literatures.Add.Command"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schoodule.Business.Features.Literatures.Add.Command"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schoodule.Business.Features.Literatures.Add.Command"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int64"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Literature"
+        ],
+        "parameters": [
+          {
+            "name": "version",
+            "in": "header",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "0.1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contract.Models.Literature"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contract.Models.Literature"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contract.Models.Literature"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/schoolAdmin/literature/{id}": {
+      "get": {
+        "tags": [
+          "Literature"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "header",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "0.1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contract.Models.Literature"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contract.Models.Literature"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Contract.Models.Literature"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Literature"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "version",
+            "in": "header",
+            "description": "The requested API version",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "default": "0.1"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Microsoft.AspNetCore.Mvc.ProblemDetails"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/schoolAdmin/room/{id}": {
       "get": {
         "tags": [
@@ -2212,6 +2444,14 @@
   },
   "components": {
     "schemas": {
+      "Contract.Enums.WeekType": {
+        "enum": [
+          "Both",
+          "Odd",
+          "Even"
+        ],
+        "type": "string"
+      },
       "Contract.Models.Class": {
         "type": "object",
         "properties": {
@@ -2243,6 +2483,9 @@
           },
           "room": {
             "$ref": "#/components/schemas/Contract.Models.Room"
+          },
+          "weekType": {
+            "$ref": "#/components/schemas/Contract.Enums.WeekType"
           }
         },
         "additionalProperties": false
@@ -2318,6 +2561,30 @@
         },
         "additionalProperties": false
       },
+      "Contract.Models.Literature": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "uri": {
+            "type": "string",
+            "nullable": true
+          },
+          "lesson": {
+            "$ref": "#/components/schemas/Contract.Models.Lesson"
+          },
+          "group": {
+            "$ref": "#/components/schemas/Contract.Models.Group"
+          }
+        },
+        "additionalProperties": false
+      },
       "Contract.Models.Room": {
         "type": "object",
         "properties": {
@@ -2332,6 +2599,9 @@
           "uri": {
             "type": "string",
             "nullable": true
+          },
+          "isRemote": {
+            "type": "boolean"
           },
           "school": {
             "$ref": "#/components/schemas/Contract.Models.School"
@@ -2499,7 +2769,7 @@
             "$ref": "#/components/schemas/Schoodule.DataAccess.Enums.Weekday"
           },
           "weekType": {
-            "$ref": "#/components/schemas/Schoodule.DataAccess.Enums.WeekType"
+            "$ref": "#/components/schemas/Contract.Enums.WeekType"
           },
           "lessonId": {
             "type": "integer",
@@ -2618,6 +2888,32 @@
         },
         "additionalProperties": false
       },
+      "Schoodule.Business.Features.Literatures.Add.Command": {
+        "required": [
+          "groupId",
+          "lessonId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "uri": {
+            "type": "string",
+            "nullable": true
+          },
+          "lessonId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "groupId": {
+            "type": "integer",
+            "format": "int64"
+          }
+        },
+        "additionalProperties": false
+      },
       "Schoodule.Business.Features.Rooms.Add.Command": {
         "required": [
           "name",
@@ -2713,14 +3009,6 @@
           "Friday",
           "Saturday",
           "Sunday"
-        ],
-        "type": "string"
-      },
-      "Schoodule.DataAccess.Enums.WeekType": {
-        "enum": [
-          "Both",
-          "Odd",
-          "Even"
         ],
         "type": "string"
       }
